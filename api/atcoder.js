@@ -1,12 +1,16 @@
 import { fetchUserInfo } from '@qatadaazzeh/atcoder-api';
 
 export default async function handler(req, res) {
-    // Allow your GitHub Pages portfolio to call this API
-    res.setHeader(
-        'Access-Control-Allow-Origin',
-        'https://abra-r.github.io',
-        'http://localhost:5173'
-    );
+    const allowedOrigins = [
+        'http://localhost:5173',
+        'https://abra-r.github.io'
+    ];
+
+    const origin = req.headers.origin;
+
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
 
     res.setHeader(
         'Access-Control-Allow-Methods',
@@ -28,6 +32,7 @@ export default async function handler(req, res) {
         return res.status(200).json({
             userMaxRating: user.userMaxRating
         });
+
     } catch (error) {
         console.error(error);
 
