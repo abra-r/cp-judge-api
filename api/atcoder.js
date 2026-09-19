@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     res.setHeader(
         'Access-Control-Allow-Origin',
         'https://abra-r.github.io',
-        'http://localhost:5173/'
+        'http://localhost:5173'
     );
 
     res.setHeader(
